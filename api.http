@@ -1,0 +1,9 @@
+### CADASTRAR USUÁRIO
+POST http://localhost:3000/usuarios
+Content-Type: application/json
+
+{
+  "nome": "Edivaldo",
+  "email": "edivaldo@email.com",
+  "senha": "123456"
+}
