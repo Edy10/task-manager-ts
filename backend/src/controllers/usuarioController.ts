@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { cadastrarUsuarioService } from "../services/usuarioService";
+import { cadastrarUsuarioService, loginUsuarioService } from "../services/usuarioService";
 
 export async function cadastrarUsuario(req: Request, res: Response) {
     try{
@@ -14,6 +14,20 @@ export async function cadastrarUsuario(req: Request, res: Response) {
 
         res.status(500).json({
             mensagem: "Erro ao cadastrar usuário."
+        });
+    }
+}
+
+export async function loginUsuario(req: Request, res: Response) {
+    try {
+        const {email, senha} = req.body;
+        const usuario = await loginUsuarioService(email, senha);
+
+        res.status(200).json(usuario);
+
+    } catch (erro: any) {
+        res.status(401).json({
+            mensagem: erro.message
         });
     }
 }
