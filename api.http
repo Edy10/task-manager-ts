@@ -1,3 +1,5 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAwMzc0MjMsImV4cCI6MTc5MDA0MTAyM30._iNNdEQRNO5rSVilR8v1YVF5wWokao1oHwxnMWjQ7LM
+
 ### CADASTRAR USUÁRIO
 POST http://localhost:3000/usuarios
 Content-Type: application/json
@@ -12,7 +14,44 @@ Content-Type: application/json
 POST http://localhost:3000/usuarios/login
 Content-Type: application/json
 
+
+
 {
   "email": "edivaldo@email.com",
   "senha": "123456"
 }
+
+### PERFIL SEM TOKEN
+GET http://localhost:3000/usuarios/perfil
+
+### PERFIL COM TOKEN
+GET http://localhost:3000/usuarios/perfil
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3ODk3NzM3NzMsImV4cCI6MTc4OTc3NzM3M30.kN7-mbqIMqClV4XtbUJqCIdpynJJY6MEhJ-YhgKBdH0
+
+### CRIAR TAREFA
+POST http://localhost:3000/tarefas
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3ODk3NzM3NzMsImV4cCI6MTc4OTc3NzM3M30.kN7-mbqIMqClV4XtbUJqCIdpynJJY6MEhJ-YhgKBdH0
+
+{
+  "titulo": "Estudar Node",
+  "descricao": "Continuar projeto Task Manager",
+  "status": "pendente",
+  "prazo": "2026-09-25"
+}
+
+### CRIAR TAREFA
+POST http://localhost:3000/tarefas
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAwMzgyNzEsImV4cCI6MTc5MDA0MTg3MX0.jUnlqpLijFezQ26-XRpZTjhkI4ZLAD3xF9F5YjVKo3E
+
+{
+  "titulo": "Estudar Node",
+  "descricao": "Continuar projeto Task Manager",
+  "status": "pendente",
+  "prazo": "2026-09-25"
+}
+
+### LISTAR TAREFAS
+GET http://localhost:3000/tarefas
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAwMzgyNzEsImV4cCI6MTc5MDA0MTg3MX0.jUnlqpLijFezQ26-XRpZTjhkI4ZLAD3xF9F5YjVKo3E

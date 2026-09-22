@@ -2,6 +2,7 @@ import express from "express";
 import pool from "./db";
 import type  { QueryResult} from "pg";
 import usuarioRoutes from "./routes/usuarioRoutes";
+import tarefaRoutes from "./routes/tarefaRoutes";
 
 const app = express();
 
@@ -14,6 +15,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/usuarios", usuarioRoutes);
+
+app.use("/tarefas", tarefaRoutes);
 
 app.listen(3000, () => {
     console.log("API rodando na porta 3000");
