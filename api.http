@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAwMzc0MjMsImV4cCI6MTc5MDA0MTAyM30._iNNdEQRNO5rSVilR8v1YVF5wWokao1oHwxnMWjQ7LM
+@token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAxMTk2NjQsImV4cCI6MTc5MDEyMzI2NH0.6ATLIKmczoUFTD1q02NTtGzOzbs7_4TOipkUZulZhd8"
 
 ### CADASTRAR USUÁRIO
 POST http://localhost:3000/usuarios
@@ -13,8 +13,6 @@ Content-Type: application/json
 ### LOGIN
 POST http://localhost:3000/usuarios/login
 Content-Type: application/json
-
-
 
 {
   "email": "edivaldo@email.com",
@@ -40,18 +38,22 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiO
   "prazo": "2026-09-25"
 }
 
-### CRIAR TAREFA
-POST http://localhost:3000/tarefas
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAwMzgyNzEsImV4cCI6MTc5MDA0MTg3MX0.jUnlqpLijFezQ26-XRpZTjhkI4ZLAD3xF9F5YjVKo3E
-
-{
-  "titulo": "Estudar Node",
-  "descricao": "Continuar projeto Task Manager",
-  "status": "pendente",
-  "prazo": "2026-09-25"
-}
-
 ### LISTAR TAREFAS
 GET http://localhost:3000/tarefas
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAwMzgyNzEsImV4cCI6MTc5MDA0MTg3MX0.jUnlqpLijFezQ26-XRpZTjhkI4ZLAD3xF9F5YjVKo3E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAxMjMzNzAsImV4cCI6MTc5MDEyNjk3MH0.uwf6Yn2_dw_oVhgyesBhnGj1-zAqjXeZnhtVTRqstEI
+
+### ATUALIZAR TAREFA
+PUT http://localhost:3000/tarefas/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAxMTk2NjQsImV4cCI6MTc5MDEyMzI2NH0.6ATLIKmczoUFTD1q02NTtGzOzbs7_4TOipkUZulZhd8
+
+{
+  "titulo": "Estudar React 2",
+  "descricao": "Apos montar o backend, trabalhar no frontend",
+  "status": "pendente",
+  "prazo": "2026-09-30"
+}
+
+### EXCLUIR TAREFA
+DELETE http://localhost:3000/tarefas/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAxMjMzNzAsImV4cCI6MTc5MDEyNjk3MH0.uwf6Yn2_dw_oVhgyesBhnGj1-zAqjXeZnhtVTRqstEI
