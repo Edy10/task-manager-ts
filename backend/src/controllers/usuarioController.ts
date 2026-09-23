@@ -7,9 +7,21 @@ export async function cadastrarUsuario(req: Request, res: Response) {
 
         const usuario = await cadastrarUsuarioService(nome, email, senha);
 
-        res.status(201).json(usuario);
+        return res.status(201).json(usuario);
 
-    } catch (erro){
+    } catch (erro: unknown){
+        if (typeof  erro === "object" && erro !== null && "code" in erro && erro.code === "23505") {
+            return res.status(409).json({
+                mensagem: "E-mail já cadastrado."
+            });
+        }
+
+        if (erro instanceof Error) {
+            return res.status(400).json({
+                mensagem: erro.message
+            });
+        }
+
         console.error("Erro ao cadastrar usuário:", erro);
 
         res.status(500).json({

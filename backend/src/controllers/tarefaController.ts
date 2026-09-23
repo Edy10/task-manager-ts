@@ -75,6 +75,12 @@ export async function atualizarTarefaController(req: Request, res: Response) {
         return res.status(200).json(tarefa);
     } catch (erro: unknown) {
         if (erro instanceof Error) {
+            if (erro.message == "Tarefa não encontrada.") {
+                return res.status(404).json({
+                    mensagem: erro.message
+                })
+            }
+
             return res.status(400).json({
                 mensagem: erro.message
             });
@@ -103,7 +109,13 @@ export async function excluirTarefaController(req: Request, res: Response) {
 
     } catch (erro: unknown) {
         if (erro instanceof Error) {
-            return res.status(401).json({
+            if (erro.message == "Tarefa não encontrada.") {
+                return res.status(404).json({
+                    mensagem: erro.message
+                })
+            }
+
+            return res.status(400).json({
                 mensagem: erro.message
             });
         }

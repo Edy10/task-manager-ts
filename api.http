@@ -5,8 +5,8 @@ POST http://localhost:3000/usuarios
 Content-Type: application/json
 
 {
-  "nome": "Edivaldo",
-  "email": "edivaldo@email.com",
+  "nome": "Richard Bassetto",
+  "email": "richard@gmail.com",
   "senha": "123456"
 }
 
@@ -24,15 +24,15 @@ GET http://localhost:3000/usuarios/perfil
 
 ### PERFIL COM TOKEN
 GET http://localhost:3000/usuarios/perfil
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3ODk3NzM3NzMsImV4cCI6MTc4OTc3NzM3M30.kN7-mbqIMqClV4XtbUJqCIdpynJJY6MEhJ-YhgKBdH0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAyMDQwNzQsImV4cCI6MTc5MDIwNzY3NH0.jBzIJm-_GfYVwAxNE8wOZHBcc7QWttAzBxqGVU67JOs
 
 ### CRIAR TAREFA
 POST http://localhost:3000/tarefas
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3ODk3NzM3NzMsImV4cCI6MTc4OTc3NzM3M30.kN7-mbqIMqClV4XtbUJqCIdpynJJY6MEhJ-YhgKBdH0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAyMDQwNzQsImV4cCI6MTc5MDIwNzY3NH0.jBzIJm-_GfYVwAxNE8wOZHBcc7QWttAzBxqGVU67JOs
 
 {
-  "titulo": "Estudar Node",
+  "titulo": "Estudar alguma coisa",
   "descricao": "Continuar projeto Task Manager",
   "status": "pendente",
   "prazo": "2026-09-25"
@@ -40,12 +40,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiO
 
 ### LISTAR TAREFAS
 GET http://localhost:3000/tarefas
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAxMjMzNzAsImV4cCI6MTc5MDEyNjk3MH0.uwf6Yn2_dw_oVhgyesBhnGj1-zAqjXeZnhtVTRqstEI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAyMDQwNzQsImV4cCI6MTc5MDIwNzY3NH0.jBzIJm-_GfYVwAxNE8wOZHBcc7QWttAzBxqGVU67JOs
 
 ### ATUALIZAR TAREFA
 PUT http://localhost:3000/tarefas/2
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAxMTk2NjQsImV4cCI6MTc5MDEyMzI2NH0.6ATLIKmczoUFTD1q02NTtGzOzbs7_4TOipkUZulZhd8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAyMDQwNzQsImV4cCI6MTc5MDIwNzY3NH0.jBzIJm-_GfYVwAxNE8wOZHBcc7QWttAzBxqGVU67JOs
 
 {
   "titulo": "Estudar React 2",
