@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import {buscarUsuarioPorEmail, criarUsuario} from "../repositories/usuarioRepository";
+import {buscarUsuarioPorEmail, criarUsuario, buscarUsuarioPorId} from "../repositories/usuarioRepository";
 
 export async function cadastrarUsuarioService(nome: string, email: string, senha: string) {
     const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -58,4 +58,14 @@ export async function loginUsuarioService(email: string, senha: string) {
         },
         token
     };
+}
+
+export async function buscarPerfilService(usuarioId: number) {
+    const usuario = await buscarUsuarioPorId(usuarioId);
+
+    if (!usuario) {
+        throw new Error("Usuário não encontrado");
+    }
+
+    return usuario;
 }

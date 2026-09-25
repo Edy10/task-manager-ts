@@ -19,6 +19,10 @@ Content-Type: application/json
   "senha": "123456"
 }
 
+### PERFIL
+GET http://localhost:3000/usuarios/perfil
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAyOTUzMDIsImV4cCI6MTc5MDI5ODkwMn0.uq0q2HC8fiP4nBNU6iMRl13taOTzrzs-fBInSvBuGPU
+
 ### PERFIL SEM TOKEN
 GET http://localhost:3000/usuarios/perfil
 
@@ -40,7 +44,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiO
 
 ### LISTAR TAREFAS
 GET http://localhost:3000/tarefas
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAyMDQwNzQsImV4cCI6MTc5MDIwNzY3NH0.jBzIJm-_GfYVwAxNE8wOZHBcc7QWttAzBxqGVU67JOs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAyOTUzMDIsImV4cCI6MTc5MDI5ODkwMn0.uq0q2HC8fiP4nBNU6iMRl13taOTzrzs-fBInSvBuGPU
 
 ### ATUALIZAR TAREFA
 PUT http://localhost:3000/tarefas/2

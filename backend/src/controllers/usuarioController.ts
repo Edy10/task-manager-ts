@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { cadastrarUsuarioService, loginUsuarioService } from "../services/usuarioService";
+import { cadastrarUsuarioService, loginUsuarioService, buscarPerfilService } from "../services/usuarioService";
 
 export async function cadastrarUsuario(req: Request, res: Response) {
     try{
@@ -40,6 +40,33 @@ export async function loginUsuario(req: Request, res: Response) {
     } catch (erro: any) {
         res.status(401).json({
             mensagem: erro.message
+        });
+    }
+}
+
+export async function buscarPerfilController(req: Request, res: Response) {
+    try {
+        const usuarioId = req.usuarioId;
+
+        if (usuarioId === undefined) {
+            return res.status(401).json({
+                mensagem: "Usuário não autenticado."
+            });
+        }
+
+        const usuario = await buscarPerfilService(usuarioId);
+
+        return  res.status(200).json(usuario);
+
+    } catch (erro: unknown) {
+        if (erro instanceof Error) {
+            return res.status(402).json({
+                mensagem: erro.message
+            });
+        }
+
+        return res.status(500).json({
+            mensagem: "Erro iterno do servido"
         });
     }
 }

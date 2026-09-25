@@ -1,6 +1,4 @@
 import express from "express";
-import pool from "./db";
-import type  { QueryResult} from "pg";
 import usuarioRoutes from "./routes/usuarioRoutes";
 import tarefaRoutes from "./routes/tarefaRoutes";
 
@@ -15,15 +13,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/usuarios", usuarioRoutes);
-
 app.use("/tarefas", tarefaRoutes);
 
 app.listen(3000, () => {
     console.log("API rodando na porta 3000");
-});
-
-pool.query("SELECT NOW()").then((resultado: QueryResult) => {
-    console.log("PostgreSQL conectado:", resultado.rows[0]);
-}).catch((erro: unknown) => {
-    console.log("Erro ao conectar no PostgrSQL:", erro);
 });

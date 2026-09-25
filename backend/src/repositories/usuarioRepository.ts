@@ -20,3 +20,14 @@ export async function buscarUsuarioPorEmail(email: string) {
 
     return resultado.rows[0];
 }
+
+export async function buscarUsuarioPorId(id: number) {
+    const resultado = await pool.query(
+        `SELECT id, nome, email
+         FROM usuarios
+         WHERE id = $1`,
+        [id]
+    );
+
+    return resultado.rows[0];
+}

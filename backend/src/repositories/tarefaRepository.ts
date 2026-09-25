@@ -1,12 +1,6 @@
 import pool from "../db";
 
-export async function criarTarefa(
-    titulo: string,
-    descricao: string,
-    status: string,
-    prazo: string,
-    usuarioId: number
-) {
+export async function criarTarefa(titulo: string, descricao: string, status: string, prazo: string, usuarioId: number) {
     const resultado = await pool.query(
         `INSERT INTO tarefas
            (titulo, descricao, status, prazo, usuario_id)
