@@ -44,7 +44,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiO
 
 ### LISTAR TAREFAS
 GET http://localhost:3000/tarefas
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTAyOTUzMDIsImV4cCI6MTc5MDI5ODkwMn0.uq0q2HC8fiP4nBNU6iMRl13taOTzrzs-fBInSvBuGPU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlZGl2YWxkb0BlbWFpbC5jb20iLCJpYXQiOjE3OTEyNDM4MDcsImV4cCI6MTc5MTI0NzQwN30.fDcQXqVj6JZcsRPH7Yzvriq4uU4z_varpKjN-caRDTk
 
 ### ATUALIZAR TAREFA
 PUT http://localhost:3000/tarefas/2
