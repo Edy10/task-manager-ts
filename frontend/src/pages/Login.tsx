@@ -25,7 +25,7 @@ function Login() {
 
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>E-mail</label>
+                    <label>E-mail </label>
 
                     <input
                         type="email"
@@ -35,7 +35,7 @@ function Login() {
                 </div>
 
                 <div>
-                    <label>Senha</label>
+                    <label>Senha </label>
 
                     <input
                         type="password"
