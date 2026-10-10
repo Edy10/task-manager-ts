@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { login } from "../services/authService";
 
-function Login() {
+interface LoginProps {
+    onLogin: (token: string) => void;
+}
+
+function Login({ onLogin }: LoginProps) {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
 
@@ -12,6 +16,8 @@ function Login() {
             const dados = await login(email, senha);
 
             localStorage.setItem("token", dados.token);
+
+            onLogin(dados.token);
 
             console.log(dados);
         } catch (erro) {

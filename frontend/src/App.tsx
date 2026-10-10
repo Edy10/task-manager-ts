@@ -1,16 +1,17 @@
-/*
+import { useState } from "react";
 import Login from "./pages/Login";
-
-function App() {
-  return <Login />
-}
-
-export default App;*/
-
 import Tarefas from "./pages/Tarefas";
 
 function App() {
-  return <Tarefas />;
+  const [token, setToken] = useState(
+      localStorage.getItem("token")
+  );
+
+  if (!token) {
+    return <Login onLogin={setToken} />
+  }
+
+  return <Tarefas onLogout={() => setToken(null)} />;
 }
 
 export default App;
