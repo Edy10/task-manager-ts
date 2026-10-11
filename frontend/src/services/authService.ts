@@ -18,3 +18,22 @@ export async function login(email: string, senha: string) {
 
     return dados;
 }
+
+export async function buscarPerfil() {
+    const token = localStorage.getItem("token");
+
+    const resposta = await fetch("http://localhost:3000/usuarios/perfil", {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+
+    const dados = await resposta.json();
+
+    if (!resposta.ok) {
+        throw new Error(dados.mensagem || "Erro ao buscar perfil");
+    }
+
+    return dados;
+}

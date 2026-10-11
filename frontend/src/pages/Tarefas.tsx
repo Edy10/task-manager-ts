@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { excluirTarefa, atualizarTarefa, criarTarefa, listarTarefas } from "../services/tarefaService"
+import { buscarPerfil } from "../services/authService";
 import type { Tarefa } from "../types/Tarefa";
 import "./Tarefas.css"
 
@@ -15,15 +16,19 @@ function Tarefas({ onLogout }: TarefaProps) {
     const [prazo, setPrazo] = useState("");
     const [mensagem, setMensagem] = useState("");
     const [carregando, setCarregando] = useState(false);
+    const [nomeUsuario, setNomeUsuario] = useState("");
 
     const [idEditando, setIdEditando] = useState<number | null>(null);
 
     useEffect(() => {
-        async function carregarTarefas() {
+        async function carregarDados() {
             try {
-                const dados = await listarTarefas();
+                const dadosTarefas = await listarTarefas();
+                setTarefas(dadosTarefas);
 
-                setTarefas(dados);
+                const perfil = await buscarPerfil();
+                setNomeUsuario(perfil.nome);
+
             } catch (e) {
                 console.error(e);
 
@@ -34,8 +39,8 @@ function Tarefas({ onLogout }: TarefaProps) {
             }
         }
 
-        carregarTarefas();
-    }, []);
+        carregarDados();
+    }, [onLogout]);
 
     async function handleCriarTarefa(event: React.FormEvent) {
         event.preventDefault();
@@ -106,11 +111,46 @@ function Tarefas({ onLogout }: TarefaProps) {
         onLogout();
     }
 
+    function formatarStatus(status: string) {
+        if (status === "pendente") {
+            return "Pendente";
+        }
+
+        if (status === "em_andamento") {
+            return "Em andamento";
+        }
+
+        if (status === "concluido") {
+            return "Concluído";
+        }
+
+        return status;
+    }
+
+    function formatarData(data: string) {
+        if (!data) {
+            return "";
+        }
+
+        const [ano, mes, dia] = data.slice(0, 10).split("-");
+
+        return `${dia}/${mes}/${ano}`;
+    }
+
     return (
         <div className="container">
             <div className="topo">
                 <h1>Minhas tarefas </h1>
-                <button type="button" onClick={handleLogout}>Sair</button>
+
+                <div className="topo-usuario">
+                    <span className="usuario-logado">
+                        <p>Olá, {nomeUsuario}</p>
+                    </span>
+
+                    <button className="botao-sair" type="button" onClick={handleLogout}>
+                        Sair
+                    </button>
+                </div>
             </div>
 
             {mensagem && <p>{mensagem}</p>}
@@ -141,12 +181,18 @@ function Tarefas({ onLogout }: TarefaProps) {
                     <div className="tarefa" key={tarefa.id}>
                         <h3>{tarefa.titulo}</h3>
                         <p>{tarefa.descricao}</p>
-                        <p>Status: {tarefa.status}</p>
-                        <p>Prazo: {tarefa.prazo?.slice(0, 10)}</p>
+                        <p>Status:
+                            <span className={`status ${tarefa.status}`}>
+                                {formatarStatus(tarefa.status)}
+                            </span>
+                        </p>
+                        <p>Prazo: {formatarData(tarefa.prazo?.slice(0, 10))}</p>
 
                         <div className="acoes">
-                            <button onClick={() => editarTarefas(tarefa)}> Editar </button>
-                            <button onClick={() =>handleExcluirTarefa(tarefa.id)} disabled={carregando}>
+                            <button className="botao-editar" onClick={() => editarTarefas(tarefa)}>
+                                Editar
+                            </button>
+                            <button className="botao-excluir" onClick={() =>handleExcluirTarefa(tarefa.id)} disabled={carregando}>
                                 {carregando ? "Aguarde..." : "Excluir"}
                             </button>
                         </div>

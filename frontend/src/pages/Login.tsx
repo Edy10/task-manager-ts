@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { login } from "../services/authService";
+import "./Login.css";
 
 interface LoginProps {
     onLogin: (token: string) => void;
@@ -8,9 +9,11 @@ interface LoginProps {
 function Login({ onLogin }: LoginProps) {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
+    const [mensagem, setMensagem] = useState("");
 
     async function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
+        setMensagem("");
 
         try {
             const dados = await login(email, senha);
@@ -22,38 +25,52 @@ function Login({ onLogin }: LoginProps) {
             console.log(dados);
         } catch (erro) {
             console.error(erro);
+
+            if (erro instanceof Error) {
+                setMensagem(erro.message);
+            }
         }
     }
 
     return (
-        <div>
-            <h1>Login</h1>
+        <div className="login-container">
+            <div className="login-card">
+                <h1>Task Manager</h1>
+                <p>Entre para acessar suas tarefas</p>
 
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>E-mail </label>
+                <form onSubmit={handleSubmit}>
+                    <div className="campo">
+                        <label>E-mail </label>
 
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)}
-                    />
-                </div>
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(event) => setEmail(event.target.value)}
+                        />
+                    </div>
 
-                <div>
-                    <label>Senha </label>
+                    <div className="campo">
+                        <label>Senha </label>
 
-                    <input
-                        type="password"
-                        value={senha}
-                        onChange={(event) => setSenha(event.target.value)}
-                    />
-                </div>
+                        <input
+                            type="password"
+                            value={senha}
+                            onChange={(event) => setSenha(event.target.value)}
+                        />
+                    </div>
 
-                <button type="submit">
-                    Entrar
-                </button>
-            </form>
+                    <button type="submit">
+                        Entrar
+                    </button>
+                </form>
+
+                {mensagem && (
+                    <p className="login-mensagem">
+                        {mensagem}
+                    </p>
+                )}
+
+            </div>
         </div>
     );
 }
