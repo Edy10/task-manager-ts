@@ -2,13 +2,10 @@ import { useEffect, useState } from "react";
 import { excluirTarefa, atualizarTarefa, criarTarefa, listarTarefas } from "../services/tarefaService"
 import { buscarPerfil } from "../services/authService";
 import type { Tarefa } from "../types/Tarefa";
+import { useNavigate } from "react-router-dom";
 import "./Tarefas.css"
 
-interface TarefaProps {
-    onLogout: () => void;
-}
-
-function Tarefas({ onLogout }: TarefaProps) {
+function Tarefas() {
     const [tarefas, setTarefas] = useState<Tarefa[]>([]);
     const [titulo, setTitulo] = useState("");
     const [descricao, setDescricao] = useState("");
@@ -19,6 +16,7 @@ function Tarefas({ onLogout }: TarefaProps) {
     const [nomeUsuario, setNomeUsuario] = useState("");
 
     const [idEditando, setIdEditando] = useState<number | null>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function carregarDados() {
@@ -34,13 +32,13 @@ function Tarefas({ onLogout }: TarefaProps) {
 
                 if (e instanceof Error && e.message === "Token inválido") {
                     localStorage.removeItem("token");
-                    onLogout();
+                    navigate("/login");
                 }
             }
         }
 
         carregarDados();
-    }, [onLogout]);
+    }, [navigate]);
 
     async function handleCriarTarefa(event: React.FormEvent) {
         event.preventDefault();
@@ -108,7 +106,7 @@ function Tarefas({ onLogout }: TarefaProps) {
 
     function handleLogout() {
         localStorage.removeItem("token");
-        onLogout();
+        navigate("/login");
     }
 
     function formatarStatus(status: string) {

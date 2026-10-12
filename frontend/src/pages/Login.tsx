@@ -1,15 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { login } from "../services/authService";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
-interface LoginProps {
-    onLogin: (token: string) => void;
-}
-
-function Login({ onLogin }: LoginProps) {
+function Login() {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [mensagem, setMensagem] = useState("");
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+
+        if (token) {
+            navigate("/tarefas");
+        }
+    }, [navigate])
 
     async function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
@@ -20,9 +26,7 @@ function Login({ onLogin }: LoginProps) {
 
             localStorage.setItem("token", dados.token);
 
-            onLogin(dados.token);
-
-            console.log(dados);
+            navigate("/tarefas");
         } catch (erro) {
             console.error(erro);
 

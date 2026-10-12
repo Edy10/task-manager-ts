@@ -1,17 +1,33 @@
-import { useState } from "react";
+import { BrowserRouter, Routes,  Route, Navigate } from "react-router-dom";
+import RotaProtegida from "./components/RotaProtegida";
 import Login from "./pages/Login";
 import Tarefas from "./pages/Tarefas";
 
 function App() {
-  const [token, setToken] = useState(
-      localStorage.getItem("token")
+  return (
+      <BrowserRouter>
+        <Routes>
+          <Route
+              path="/"
+              element={<Navigate to="/login" />}
+          />
+
+          <Route
+              path="/login"
+              element={<Login />}
+          />
+
+          <Route
+              path="/tarefas"
+              element={
+                <RotaProtegida>
+                    <Tarefas />
+                </RotaProtegida>
+              }
+          />
+        </Routes>
+      </BrowserRouter>
   );
-
-  if (!token) {
-    return <Login onLogin={setToken} />
-  }
-
-  return <Tarefas onLogout={() => setToken(null)} />;
 }
 
 export default App;
