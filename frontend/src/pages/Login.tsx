@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { login } from "../services/authService";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 function Login() {
@@ -66,6 +66,10 @@ function Login() {
                     <button type="submit">
                         Entrar
                     </button>
+
+                    <p className="login-cadastro">
+                        Não tem uma conta? <Link to="/cadastro">Cadastre-se</Link>
+                    </p>
                 </form>
 
                 {mensagem && (

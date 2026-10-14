@@ -37,3 +37,25 @@ export async function buscarPerfil() {
 
     return dados;
 }
+
+export async function cadastrarUsuario(nome: string, email: string, senha: string) {
+    const resposta =  await fetch("http://localhost:3000/usuarios", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body : JSON.stringify({
+            nome,
+            email,
+            senha
+        })
+    });
+
+    const dados = await resposta.json();
+
+    if (!resposta.ok) {
+        throw new Error(dados.mensagem || "Erro ao cadastrar usuário.");
+    }
+
+    return dados;
+}

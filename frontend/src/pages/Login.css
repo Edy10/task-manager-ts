@@ -63,3 +63,14 @@
     color: #a40000;
     font-size: 14px;
 }
+
+.login-cadastro {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.login-cadastro a {
+    font-weight: 600;
+    text-decoration: none;
+}
