@@ -14,6 +14,23 @@ function Cadastro() {
         event.preventDefault();
         setMensagem("");
 
+        if (!nome.trim() || !email.trim() || !senha.trim()) {
+            setMensagem("Preencha todos os campos.");
+            return;
+        }
+
+        const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailValido.test(email)) {
+            setMensagem("Informe um e-mail válido.");
+            return;
+        }
+
+        if (senha.length < 6) {
+            setMensagem("A senha deve ter pelo menos 6 caracteres.");
+            return;
+        }
+
         try {
             await cadastrarUsuario(nome, email, senha);
 

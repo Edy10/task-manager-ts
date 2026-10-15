@@ -1,9 +1,11 @@
-import * as https from "https";
+import { obterToken } from "./tokenService";
+
+const API_URL = "http://localhost:3000";
 
 export async function listarTarefas() {
-    const token = localStorage.getItem("token");
+    const token = obterToken();
 
-    const resposta = await fetch("http://localhost:3000/tarefas", {
+    const resposta = await fetch(`${API_URL}/tarefas`, {
        method: "GET",
        headers: {
            Authorization: `Bearer ${token}`
@@ -22,9 +24,9 @@ export async function listarTarefas() {
 }
 
 export async function criarTarefa(titulo: string, descricao: string, status: string, prazo: string) {
-    const token = localStorage.getItem("token");
+    const token = obterToken();
 
-    const resposta = await fetch("http://localhost:3000/tarefas", {
+    const resposta = await fetch(`${API_URL}/tarefas`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -50,9 +52,9 @@ export async function criarTarefa(titulo: string, descricao: string, status: str
 }
 
 export async function atualizarTarefa(id: number, titulo: string, descricao: string, status: string, prazo: string) {
-    const token = localStorage.getItem("token");
+    const token = obterToken();
 
-    const resposta = await fetch(`http://localhost:3000/tarefas/${id}`, {
+    const resposta = await fetch(`${API_URL}/tarefas/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -78,9 +80,9 @@ export async function atualizarTarefa(id: number, titulo: string, descricao: str
 }
 
 export async function excluirTarefa(id: number) {
-   const token = localStorage.getItem("token");
+   const token = obterToken();
 
-   const resposta = await fetch(`http://localhost:3000/tarefas/${id}`, {
+   const resposta = await fetch(`${API_URL}/tarefas/${id}`, {
        method: "DELETE",
        headers: {
            Authorization: `Bearer ${token}`

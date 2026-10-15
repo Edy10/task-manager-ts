@@ -3,6 +3,7 @@ import RotaProtegida from "./components/RotaProtegida";
 import Login from "./pages/Login";
 import Tarefas from "./pages/Tarefas";
 import Cadastro from "./pages/Cadastro";
+import NaoEncontrado from "./pages/NaoEncontrada";
 
 function App() {
     return (
@@ -10,7 +11,7 @@ function App() {
         <Routes>
             <Route
               path="/"
-              element={<Navigate to="/login" />}
+              element={<Navigate to="/login" replace />}
             />
 
             <Route
@@ -30,6 +31,11 @@ function App() {
                     <Tarefas />
                 </RotaProtegida>
               }
+            />
+
+            <Route
+                path="*"
+                element={<NaoEncontrado />}
             />
         </Routes>
     </BrowserRouter>

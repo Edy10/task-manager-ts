@@ -4,6 +4,7 @@ import { buscarPerfil } from "../services/authService";
 import type { Tarefa } from "../types/Tarefa";
 import { useNavigate } from "react-router-dom";
 import "./Tarefas.css"
+import { removeToken } from "../services/tokenService";
 
 function Tarefas() {
     const [tarefas, setTarefas] = useState<Tarefa[]>([]);
@@ -31,7 +32,7 @@ function Tarefas() {
                 console.error(e);
 
                 if (e instanceof Error && e.message === "Token inválido") {
-                    localStorage.removeItem("token");
+                    removeToken();
                     navigate("/login");
                 }
             }
@@ -105,7 +106,7 @@ function Tarefas() {
     }
 
     function handleLogout() {
-        localStorage.removeItem("token");
+        removeToken();
         navigate("/login");
     }
 

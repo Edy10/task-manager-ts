@@ -1,5 +1,9 @@
+import { obterToken } from "./tokenService";
+
+const API_URL = "http://localhost:3000";
+
 export async function login(email: string, senha: string) {
-    const resposta = await fetch("http://localhost:3000/usuarios/login", {
+    const resposta = await fetch(`${API_URL}/usuarios/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -20,9 +24,9 @@ export async function login(email: string, senha: string) {
 }
 
 export async function buscarPerfil() {
-    const token = localStorage.getItem("token");
+    const token = obterToken();
 
-    const resposta = await fetch("http://localhost:3000/usuarios/perfil", {
+    const resposta = await fetch(`${API_URL}/usuarios/perfil`, {
         method: "GET",
         headers: {
             Authorization: `Bearer ${token}`
@@ -39,7 +43,7 @@ export async function buscarPerfil() {
 }
 
 export async function cadastrarUsuario(nome: string, email: string, senha: string) {
-    const resposta =  await fetch("http://localhost:3000/usuarios", {
+    const resposta =  await fetch(`${API_URL}/usuarios`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

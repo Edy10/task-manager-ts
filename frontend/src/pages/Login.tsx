@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { login } from "../services/authService";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
+import {obterToken, salvarToken} from "../services/tokenService";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -10,7 +11,7 @@ function Login() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
+        const token = obterToken();
 
         if (token) {
             navigate("/tarefas");
@@ -24,12 +25,10 @@ function Login() {
         try {
             const dados = await login(email, senha);
 
-            localStorage.setItem("token", dados.token);
+            salvarToken(dados.token);
 
             navigate("/tarefas");
         } catch (erro) {
-            console.error(erro);
-
             if (erro instanceof Error) {
                 setMensagem(erro.message);
             }
