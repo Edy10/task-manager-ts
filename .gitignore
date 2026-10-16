@@ -1,3 +1,14 @@
-.env
+# Dependências
 node_modules/
+
+# Variáveis de ambiente
+.env
+
+# Build
 dist/
+
+# IDE
+.idea/
+
+# Sistema operacional
+.DS_Store
